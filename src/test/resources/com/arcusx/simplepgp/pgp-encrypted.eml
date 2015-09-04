@@ -1,0 +1,26 @@
+To: <bob@example.com>
+Message-ID: <some-message-id.1>
+Subject: A subject
+MIME-Version: 1.0
+Content-Type: multipart/encrypted; protocol="application/pgp-encrypted";
+	boundary="----=_Part_2_1523115521.1441328406163"
+Date: Fri, 4 Sep 2015 02:58:27 +0200
+From: alice@example.com
+
+------=_Part_2_1523115521.1441328406163
+Content-Type: application/pgp-encrypted
+Content-Transfer-Encoding: 7bit
+Content-Description: PGP/MIME version identification
+
+Version: 1
+------=_Part_2_1523115521.1441328406163
+Content-Type: application/octet-stream; name="message.asc"
+Content-Transfer-Encoding: 7bit
+Content-Description: OpenPGP encrypted message
+Content-Disposition: inline; filename="message.asc"
+
+-----BEGIN PGP MESSAGE-----
+...
+-----END PGP MESSAGE-----
+
+------=_Part_2_1523115521.1441328406163--

@@ -104,6 +104,11 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<artifactId>mail</artifactId>
+			<groupId>javax.mail</groupId>
+			<version>1.4.1</version>
+		</dependency>
 	</dependencies>
 	<distributionManagement>
 		<repository>

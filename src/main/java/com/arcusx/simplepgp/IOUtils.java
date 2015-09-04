@@ -10,6 +10,7 @@ package com.arcusx.simplepgp;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,22 @@ import java.util.logging.Logger;
 class IOUtils
 {
 	private static final Logger logger = Logger.getLogger(IOUtils.class.getName());
+
+	public static String toString(InputStream in, String charSet) throws IOException
+	{
+		char[] cbuf = new char[1024 * 4];
+		int len = 0;
+
+		InputStreamReader rd = new InputStreamReader(in, charSet);
+		StringBuilder buf = new StringBuilder();
+		while ((len = (rd.read(cbuf))) != -1)
+		{
+			buf.append(cbuf, 0, len);
+		}
+		rd.close();
+
+		return buf.toString();
+	}
 
 	public static void closeQuietly(InputStream in)
 	{
