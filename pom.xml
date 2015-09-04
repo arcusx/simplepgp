@@ -15,6 +15,14 @@
 		<connection>scm:git:ssh://git@scm.arcusx.lan/arcusx/simplepgp.git</connection>
 		<tag>HEAD</tag>
 	</scm>
+	<developers>
+		<developer>
+			<name>Cornelius Buschla</name>
+			<email>c.buschka@arcusx.com.com</email>
+			<organization>arcus(x) GmbH</organization>
+			<organizationUrl>http://www.arcusx.com</organizationUrl>
+		</developer>
+	</developers>
 	<licenses>
 		<license>
 			<name>MIT License</name>
