@@ -27,8 +27,8 @@ public class PgpMailAssemblerTest
 	@Test
 	public void happyPath() throws Exception
 	{
-		MimeMessage message = new PgpMailAssembler(session).withSender("sender@example.com")
-				.withRecipient("recipient@example.com").withData(fakePgpData).build();
+		MimeMessage message = new PgpMailAssembler(session).withHeader("X-Header", "Value")
+				.withSender("sender@example.com").withRecipient("recipient@example.com").withData(fakePgpData).build();
 		assertNotNull(message);
 
 		String pgpData = new PgpMailDisassembler(message).getEncryptedPgpData();

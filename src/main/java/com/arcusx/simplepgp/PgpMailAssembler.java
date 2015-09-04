@@ -10,6 +10,8 @@ package com.arcusx.simplepgp;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -28,6 +30,8 @@ import javax.mail.internet.MimeMultipart;
 public class PgpMailAssembler
 {
 	private Session session;
+
+	private Map<String, String> headersMap = new HashMap<>();
 
 	private String recipient;
 	private String sender;
@@ -55,6 +59,12 @@ public class PgpMailAssembler
 	public PgpMailAssembler withSubject(String subject)
 	{
 		this.subject = subject;
+		return this;
+	}
+
+	public PgpMailAssembler withHeader(String key, String value)
+	{
+		this.headersMap.put(key, value);
 		return this;
 	}
 
@@ -128,6 +138,10 @@ public class PgpMailAssembler
 		mimeMessage.setRecipients(RecipientType.TO, InternetAddress.parse(recipient));
 		mimeMessage.setSender(InternetAddress.parse(sender)[0]);
 		mimeMessage.setSubject(subject);
+		for (Map.Entry<String, String> header : this.headersMap.entrySet())
+		{
+			mimeMessage.addHeader(header.getKey(), header.getValue());
+		}
 		return mimeMessage;
 	}
 }
