@@ -8,6 +8,7 @@
 	<version>1.0.5-SNAPSHOT</version>
 	<name>arcus(x) SimplePGP</name>
 	<description>Simple facade to PGP encryption and decryption</description>
+	<url>https://github.com/arcusx/simplepgp</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
