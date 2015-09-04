@@ -71,27 +71,35 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>3.0.2</version>
-				<configuration>
-					<threshold>High</threshold>
-					<effort>Default</effort>
-				</configuration>
-				<executions>
-					<execution>
-						<id>findbugs</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>findbugs</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
-	<modules />
+	<profiles>
+		<profile>
+			<id>continous-integration</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>findbugs-maven-plugin</artifactId>
+						<version>3.0.2</version>
+						<configuration>
+							<threshold>High</threshold>
+							<effort>Default</effort>
+						</configuration>
+						<executions>
+							<execution>
+								<id>findbugs</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>findbugs</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 	<dependencies>
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
