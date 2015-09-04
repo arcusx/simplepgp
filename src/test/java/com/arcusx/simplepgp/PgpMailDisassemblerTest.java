@@ -16,6 +16,8 @@ import javax.mail.internet.MimeMessage;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class PgpMailDisassemblerTest
 {
@@ -26,9 +28,20 @@ public class PgpMailDisassemblerTest
 	{
 		MimeMessage message = new MimeMessage(this.session, getClass().getResourceAsStream("pgp-encrypted.eml"));
 
-		String pgpData = new PgpMailDisassembler(message).getEncryptedPgpData();
+		PgpMailDisassembler disassembler = new PgpMailDisassembler(message);
+		assertTrue(disassembler.isEncryptedPgpMail());
+		String pgpData = disassembler.getEncryptedPgpData();
 
 		assertEquals("-----BEGIN PGP MESSAGE-----\r\n...\r\n-----END PGP MESSAGE-----\r\n", pgpData);
+	}
+
+	@Test
+	public void plainText() throws Exception
+	{
+		MimeMessage message = new MimeMessage(this.session, getClass().getResourceAsStream("plain-text.eml"));
+
+		PgpMailDisassembler disassembler = new PgpMailDisassembler(message);
+		assertFalse(disassembler.isEncryptedPgpMail());
 	}
 
 }

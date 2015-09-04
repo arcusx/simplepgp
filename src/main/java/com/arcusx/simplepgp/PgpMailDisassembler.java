@@ -30,8 +30,17 @@ public class PgpMailDisassembler
 		this.mimeMessage = mimeMessage;
 	}
 
+	public boolean isEncryptedPgpMail() throws MessagingException
+	{
+		String contentType = this.mimeMessage.getContentType();
+		return contentType.contains("application/pgp-encrypted");
+	}
+
 	public String getEncryptedPgpData() throws IOException, MessagingException
 	{
+		if (!isEncryptedPgpMail())
+			throw new MessagingException("No encrypted PGP mail.");
+
 		Object messageContent = this.mimeMessage.getContent();
 		checkIsMultipart(messageContent);
 
@@ -41,8 +50,13 @@ public class PgpMailDisassembler
 
 	private void checkIsMultipart(Object messageContent)
 	{
-		if (!(messageContent instanceof MimeMultipart))
+		if (isMultipartMessage(messageContent))
 			throw new IllegalStateException("Message is not multipart message. So it cannot be a PGP mail.");
+	}
+
+	private boolean isMultipartMessage(Object messageContent)
+	{
+		return !(messageContent instanceof MimeMultipart);
 	}
 
 	private String getPgpEncryptedDataFrom(MimeMultipart multipart) throws MessagingException, IOException

@@ -1,0 +1,9 @@
+To: <bob@example.com>
+Message-ID: <some-message-id.1>
+Subject: A subject
+MIME-Version: 1.0
+Content-Type: text/plain
+Date: Fri, 4 Sep 2015 02:58:27 +0200
+From: alice@example.com
+
+Hello. Bye.
