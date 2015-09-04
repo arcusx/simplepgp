@@ -8,6 +8,7 @@
 
 package com.arcusx.simplepgp;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -51,6 +52,18 @@ public class PgpDataDecryptor
 
 	public PgpDataDecryptor()
 	{
+	}
+
+	public String decryptAndVerify(String encryptedData, String privateKey, String publicKey)
+			throws PGPException, IOException
+	{
+		InputStream encryptedIn = IOUtils.toInputStream(encryptedData, "UTF-8");
+		InputStream privateKeyIn = IOUtils.toInputStream(privateKey, "UTF-8");
+		InputStream publicKeyIn = IOUtils.toInputStream(publicKey, "UTF-8");
+		ByteArrayOutputStream plainOut = new ByteArrayOutputStream();
+
+		decryptAndVerify(encryptedIn, privateKeyIn, publicKeyIn, plainOut);
+		return new String(plainOut.toByteArray(), "UTF-8");
 	}
 
 	public void decryptAndVerify(InputStream encryptedIn, InputStream privateKeyIn, InputStream publicKeyIn,

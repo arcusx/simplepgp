@@ -8,6 +8,7 @@
 
 package com.arcusx.simplepgp;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,6 +24,11 @@ import java.util.logging.Logger;
 class IOUtils
 {
 	private static final Logger logger = Logger.getLogger(IOUtils.class.getName());
+
+	public static InputStream toInputStream(String s, String charSet) throws IOException
+	{
+		return new ByteArrayInputStream(s.getBytes(charSet));
+	}
 
 	public static String toString(InputStream in, String charSet) throws IOException
 	{

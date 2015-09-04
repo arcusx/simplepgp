@@ -8,6 +8,7 @@
 
 package com.arcusx.simplepgp;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -50,6 +51,17 @@ public class PgpDataEncryptor
 
 	public PgpDataEncryptor()
 	{
+	}
+
+	public String encryptAndSign(String plainData, String recipientPublicKey, String senderPrivateKey)
+			throws IOException, PGPException
+	{
+		InputStream plainDataIn = IOUtils.toInputStream(plainData, "UTF-8");
+		InputStream recipientPublicKeyIn = IOUtils.toInputStream(recipientPublicKey, "UTF-8");
+		InputStream senderPrivateKeyIn = IOUtils.toInputStream(senderPrivateKey, "UTF-8");
+		ByteArrayOutputStream encryptedDataOut = new ByteArrayOutputStream();
+		encryptAndSign(plainDataIn, recipientPublicKeyIn, "message.asc", senderPrivateKeyIn, encryptedDataOut, true);
+		return new String(encryptedDataOut.toByteArray(), "UTF-8");
 	}
 
 	public void encryptAndSign(InputStream dataIn, InputStream recipientPublicKeyFileIn, String dataFileName,
