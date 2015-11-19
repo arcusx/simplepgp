@@ -3,7 +3,11 @@ This library provides a simple facade to PGP encryption and decryption using
 the Bouncy Castle PGP lib (https://www.bouncycastle.org).
 
 # Build Status
-[![Build Status](https://travis-ci.org/arcusx/simplepgp.svg)]
+[![Build Status](https://travis-ci.org/arcusx/simplepgp.svg)](https://travis-ci.org/arcusx/simplepgp)
+
+
+ld Status](https://travis-ci.org/simkimsia/UtilityBehaviors.png)](https://travis-ci.org/simkimsia/UtilityBehaviors)
+]
 
 # License
 This source code is subject to the license terms in the LICENSE file found in
